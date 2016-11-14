@@ -50,7 +50,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#contact">Source</a></li>
+            <li class="active"><a href="https://github.com/mmmelody/TLU">Source</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -244,7 +244,7 @@
 		<div class="container">
 			<div class="row centered">
 					<div class="col-lg-7 col-lg-offset-1 mt">
-					<p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+					<p class="lead">This is a simply TLU implementation,</p>
 			</div>
 			
 			<div class="col-lg-3 mt">
@@ -307,8 +307,12 @@
 		else train_y.push(0);
         }
         train(train_x,train_y,weight,theta,alpha);
-        document.getElementById("w1").innerHTML = weight[0];
-        document.getElementById("w2").innerHTML = weight[1];
+        document.getElementById("w1").innerHTML = weight[0].toFixed(5);
+        document.getElementById("w2").innerHTML = weight[1].toFixed(5);
+        document.getElementById("times").innerHTML = stop;
+        if(stop>=100000){
+					alert("failed");
+		}
 
       };
       function train(train_x,train_y,weight,theta,alpha){
@@ -319,17 +323,15 @@
 					for(j=0;j<train_x[i].length;j++){
 						weight[j]+=alpha*(train_y[i]-output)*train_x[i][j];
 					}
-					i=0;
+					i=-1;
 				}
 				i++;
 				stop++;
 				if(stop>=100000){
 					break;
-					alert("failed");
 				}
 				
 			}
-			document.getElementById("times").innerHTML = stop;
 			return weight;
 		} 
 
@@ -354,7 +356,6 @@
 		        temp.push(parseInt(objx[i].value));
 		    }
 		    indata.push(temp);
-		    console.log(indata);
 		    var y =TLU(indata[0],weight,theta);
 		    document.getElementById("result").innerHTML = y;
       		
